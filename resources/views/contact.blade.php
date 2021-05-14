@@ -44,7 +44,7 @@
                             <a class="nav-link" href="{{route('homeuser')}}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('allcourses') }}">All courses</a>
+                            <a class="nav-link" href="{{ route('allsubjects') }}">All subjects</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('contactget') }}">Contact us</a>
@@ -75,9 +75,9 @@
                                         <span>{{ __('go to admin') }}</span>
                                     </a>
                                 @endif
-                                <a href="{{ route('mycourses') }}" class="dropdown-item">
+                                <a href="{{ route('mysubjects') }}" class="dropdown-item">
                                     <i style="margin-left:-7px;margin-right:5px" class="fas fa-chalkboard-teacher"></i>
-                                    <span>{{ __('My Courses') }}</span>
+                                    <span>{{ __('My Subjects') }}</span>
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -99,8 +99,8 @@
                                     <div class="text-center contact-title">
                                         <h1>Get In Touch</h1>
                                         <h2>We are always ready to respond to you</h2>
-                                        <img class="img-fluid img-thumbnail" src="{{ asset('images') }}/img-01.png" class="card-img-top" alt="Course Photo">
-                                        <img class="email img-fluid img-thumbnail" src="{{ asset('images') }}/email-us.webp" class="card-img-top" alt="Course Photo">
+                                        <img class="img-fluid img-thumbnail" src="{{ asset('images') }}/img-01.png" class="card-img-top" alt="Subject Photo">
+                                        <img class="email img-fluid img-thumbnail" src="{{ asset('images') }}/email-us.webp" class="card-img-top" alt="Subject Photo">
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
@@ -186,7 +186,7 @@
 
             <!-- Content -->
             <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Learn with us</h5>
-            <p>LearnCode is the most popular learning platform in the middle east where you can find all courses that you need to develop your skills
+            <p>LearnCode is the most popular learning platform in the middle east where you can find all subjects that you need to develop your skills
                 and start your career.
             </p>
 
@@ -209,7 +209,7 @@
                 <a href="{{ route('login') }}">Login</a>
                 </li>
                 <li>
-                <a href="{{ route('mycourses') }}">All Courses</a>
+                <a href="{{ route('mysubjects') }}">All Subjects</a>
                 </li>
             </ul>
 

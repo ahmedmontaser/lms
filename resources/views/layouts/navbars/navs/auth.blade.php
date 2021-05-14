@@ -28,10 +28,6 @@
                         <i class="ni ni-single-02"></i>
                         <span>{{ __('My profile') }}</span>
                     </a>
-                    <a href="{{ route('homeuser') }}" class="dropdown-item">
-                        <i class="fas fa-home"></i>
-                        <span>{{ __('go to homepage') }}</span>
-                    </a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">

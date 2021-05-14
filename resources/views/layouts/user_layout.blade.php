@@ -43,13 +43,7 @@
 
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('homeuser') }}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('allcourses') }}">All courses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('contactget') }}">Contact us</a>
+                        <a class="nav-link" href="{{ route('allsubjects') }}">All subjects</a>
                     </li>
                     <li class="nav-item active dropdown">
                         <a class="nav-link @auth dropdown-toggle @endauth" href="{{ route('login') }}" @auth id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @endauth>
@@ -77,9 +71,9 @@
                                     <span>{{ __('go to admin') }}</span>
                                 </a>
                             @endif
-                            <a href="{{ route('mycourses') }}" class="dropdown-item">
+                            <a href="{{ route('mysubjects') }}" class="dropdown-item">
                                 <i style="margin-left:-7px;margin-right:5px" class="fas fa-chalkboard-teacher"></i>
-                                <span>{{ __('My Courses') }}</span>
+                                <span>{{ __('My Subjects') }}</span>
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

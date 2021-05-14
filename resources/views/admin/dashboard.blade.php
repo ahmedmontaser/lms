@@ -10,47 +10,45 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">Latest Courses</h3>
+                                <h3 class="mb-0">Latest Subjects</h3>
                             </div>
                             <div class="col text-right">
-                                <a href="{{ route('courses.index') }}" class="btn btn-sm btn-primary">See all</a>
+                                <a href="{{ route('subjects.index') }}" class="btn btn-sm btn-primary">See all</a>
                             </div>
                         </div>
                     </div>
-                    @if(count($courses))
+                    @if(count($subjects))
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{ __('title') }}</th>
                                     <th scope="col">{{ __('NO of Users') }}</th>
-                                    <th scope="col">{{ __('Track Name') }}</th>
                                     <th scope="col">{{ __('Creation Date') }}</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($courses as $course)
+                                @foreach ($subjects as $subject)
                                     <tr>
-                                        <td><a href="{{ route('courses.show', $course) }}">{{ \Str::limit($course->title, 20) }}</a></td>
+                                        <td><a href="{{ route('subjects.show', $subject) }}">{{ \Str::limit($subject->title, 20) }}</a></td>
 
-                                        <td>{{ count($course->users) }} users</td>
+                                        <td>{{ count($subject->users) }} users</td>
 
-                                        <td>{{ $course->track->name }}</td>
 
-                                        <td>{{ $course->created_at->diffForHumans() }}</td>
+                                        <td>{{ $subject->created_at->diffForHumans() }}</td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <form action="{{ route('courses.destroy', $course) }}" method="post">
+                                                    <form action="{{ route('subjects.destroy', $subject) }}" method="post">
                                                         @csrf
                                                         @method('delete')
                                                         
-                                                        <a class="dropdown-item" href="{{ route('courses.edit', $course) }}">{{ __('Edit') }}</a>
-                                                        <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this course?") }}') ? this.parentElement.submit() : ''">
+                                                        <a class="dropdown-item" href="{{ route('subjects.edit', $subject) }}">{{ __('Edit') }}</a>
+                                                        <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this subject?") }}') ? this.parentElement.submit() : ''">
                                                             {{ __('Delete') }}
                                                         </button>
                                                     </form>    
@@ -63,67 +61,8 @@
                         </table>
                     </div>
                     @else
-                        <p class="lead text-center"> No courses found</p>
+                        <p class="lead text-center"> No subjects found</p>
                     @endif
-                </div>
-            </div>
-            <div class="col-xl-5">
-                <div class="card shadow">
-                        <div class="card-header border-0">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <h3 class="mb-0">Latest Tracks</h3>
-                                </div>
-                                <div class="col text-right">
-                                    <a href="{{ route('tracks.index') }}" class="btn btn-sm btn-primary">See all</a>
-                                </div>
-                            </div>
-                        </div>
-                        @if(count($tracks))
-                        <div class="table-responsive">
-                            <table class="table align-items-center table-flush">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">{{ __('Name') }}</th>
-                                        <th scope="col">{{ __('NO Courses') }}</th>
-                                        <th scope="col">{{ __('Creation Date') }}</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($tracks as $track)
-                                        <tr>
-                                            <td><a href="{{ route('tracks.show',$track) }}">{{ $track->name }}</a></td>
-
-                                            <td>{{ count($track->courses) }} courses</td>
-
-                                            <td>{{ $track->created_at->diffForHumans() }}</td>
-                                            <td class="text-right">
-                                                <div class="dropdown">
-                                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="fas fa-ellipsis-v"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                        <form action="{{ route('tracks.destroy', $track) }}" method="post">
-                                                            @csrf
-                                                            @method('delete')
-                                                            
-                                                            <a class="dropdown-item" href="{{ route('tracks.edit', $track) }}">{{ __('Edit') }}</a>
-                                                            <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this track?") }}') ? this.parentElement.submit() : ''">
-                                                                {{ __('Delete') }}
-                                                            </button>
-                                                        </form>    
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        @else
-                            <p class="lead text-center"> No Tracks found</p>
-                        @endif
                 </div>
             </div>
         </div>
@@ -221,7 +160,7 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{ __('Name') }}</th>
-                                    <th scope="col">{{ __('Course name') }}</th>
+                                    <th scope="col">{{ __('Subject name') }}</th>
                                     <th scope="col">{{ __('Creation Date') }}</th>
                                     <th scope="col"></th>
                                 </tr>
@@ -230,7 +169,7 @@
                                 @foreach ($quizzes as $quiz)
                                     <tr>
                                         <td><a href="{{ route('quizzes.show',$quiz) }}">{{ \Str::limit($quiz->name, 15) }}</a></td>
-                                        <td><a href="{{ route('courses.show', $quiz->course) }}">{{ \Str::limit($quiz->course->title, 10) }}</a></td>
+                                        <td><a href="{{ route('subjects.show', $quiz->subject) }}">{{ \Str::limit($quiz->subject->title, 10) }}</a></td>
                                         <td>{{ $quiz->created_at->diffForHumans() }}</td>
                                         <td class="text-right">
                                             <div class="dropdown">

@@ -16,9 +16,9 @@
                             <div class="card-profile-image">
                                 <a href="#">
                                 @if(auth()->user()->photo)
-                                        <img class="img-fluid img-thumbnail" src="{{ asset('images') }}/{{auth()->user()->photo->filename}}" class="card-img-top" alt="Course Photo">
+                                        <img class="img-fluid img-thumbnail card-img-top" src="{{ asset('images') }}/{{auth()->user()->photo->filename}}" alt="Subject Photo">
                                     @else
-                                        <img  class="img-fluid img-thumbnail" src="{{ asset('images') }}/default.jpg" class="card-img-top" alt="Course Photo">
+                                        <img  class="img-fluid img-thumbnail" src="{{ asset('images') }}/default.jpg" class="card-img-top" alt="Subject Photo">
                                     @endif
                                 </a>
                             </div>
@@ -37,7 +37,7 @@
                                 <i class="ni education_hat mr-2"></i> {{ auth()->user()->admin == 2 ? 'owner':'admin'}}
                             </div>
                             <hr class="my-4" />
-                            <p>{{ auth()->user()->name }}{{ __(', from Alexandria — Web Developer') }}</p>
+                            <p>{{ auth()->user()->name }}</p>
                         </div>
                     </div>
                 </div>

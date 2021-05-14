@@ -33,7 +33,7 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">{{ __('Question title') }}</th>
+                                    <th scope="col">{{ __('Question') }}</th>
                                     <th scope="col">{{ __('options given') }}</th>
                                     <th scope="col">{{ __('right Answer') }}</th>
                                     <th scope="col">{{ __('score') }}</th>
@@ -43,8 +43,8 @@
                             <tbody>
                                 @foreach ($quiz->questions as $question)
                                     <tr>
-                                        <td>{{ \Str::limit($question->title,15) }}</td>
-                                        <td>{{ \Str::limit($question->option_1,10) }}&nbsp; - &nbsp;{{ \Str::limit($question->option_2,10) }}&nbsp; -&nbsp; {{ \Str::limit($question->option_3,10) }}&nbsp; - &nbsp;{{ \Str::limit($question->option_4,10) }}</td>
+                                        <td>{{ \Str::limit($question->question,15) }}</td>
+                                        <td>{{ \Str::limit($question->right_answer,10) }} - {{ \Str::limit($question->option_1,10) }}&nbsp; - &nbsp;{{ \Str::limit($question->option_2,10) }}&nbsp; -&nbsp; {{ \Str::limit($question->option_3,10) }}</td>
                                         <td>{{ $question->right_answer }}</td>
                                         <td>{{ $question->score}}</td>
                                         <td class="text-right">

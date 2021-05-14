@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
-use App\Http\Requests\UserRequest;
+use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Http\Request;
 
-use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -31,7 +30,7 @@ class AdminController extends Controller
         return view('admin.admins.create');
     }
 
-    public function store(UserRequest $request, User $model)
+    public function store( $request, User $model)
     {   
 
         $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());

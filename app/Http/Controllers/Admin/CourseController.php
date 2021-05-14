@@ -27,7 +27,7 @@ class CourseController extends Controller
         $rules = [
             'title' => 'required|min:5|max:150',
             'status' => 'required|integer|in:0,1',
-            'link' => 'required|url',
+            'link' => 'required',
             'track_id' => 'required|integer',
         ];
 
@@ -38,7 +38,7 @@ class CourseController extends Controller
         $course = Course::create($request->all());
 
         if($course) {
-            
+
             if($file = $request->file('image')) {
 
                 $filename = $file->getClientOriginalName();
@@ -57,10 +57,10 @@ class CourseController extends Controller
         }
 
     }
-    
+
     public function show(Course $course)
     {
-        return view('admin.courses.show', compact('course'));   
+        return view('admin.courses.show', compact('course'));
     }
 
     public function edit(Course $course)
@@ -83,7 +83,7 @@ class CourseController extends Controller
         $request['slug'] = strtolower(str_replace(' ','-',$request->title));
 
         $course->update($request->all());
-  
+
         if($file = $request->file('image')) {
 
             $filename = $file->getClientOriginalName();
@@ -114,7 +114,7 @@ class CourseController extends Controller
     }
 
     public function destroy(Course $course)
-    {   
+    {
         if($course->photo) {
             $filename = $course->photo->filename;
             unlink('images/'.$filename);

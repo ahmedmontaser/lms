@@ -5,8 +5,7 @@
     @include('includes.home_picture')
 
     @auth
-        @include('includes.mycourses')
+        @include('includes.mysubjects')
     @endauth
 
-    @include('includes.track_famous_courses')
 @endsection

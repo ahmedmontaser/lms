@@ -35,7 +35,7 @@
                                 <tr>
                                     <th scope="col">{{ __('Name') }}</th>
                                     <th scope="col">{{ __('No. of questions') }}</th>
-                                    <th scope="col">{{ __('Course name') }}</th>
+                                    <th scope="col">{{ __('Subject name') }}</th>
                                     <th scope="col">{{ __('Creation Date') }}</th>
                                     <th scope="col"></th>
                                 </tr>
@@ -47,7 +47,7 @@
                                         @if($quiz->questions)
                                         <td>{{ count($quiz->questions) }}</td>
                                         @endif
-                                        <td><a href="{{ route('courses.show', $quiz->course) }}">{{ \Str::limit($quiz->course->title, 10) }}</a></td>
+                                        <td><a href="{{ route('subjects.show', $quiz->subject) }}">{{ \Str::limit($quiz->subject->title, 10) }}</a></td>
                                         <td>{{ $quiz->created_at->diffForHumans() }}</td>
                                         <td class="text-right">
                                             <div class="dropdown">

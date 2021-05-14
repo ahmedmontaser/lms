@@ -12,9 +12,6 @@
                             <div class="col-8">
                                 <h3 class="mb-0">{{ __('Question Management') }}</h3>
                             </div>
-                            <div class="col-4 text-right">
-                                <a href="{{ route('videos.index') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
-                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -22,58 +19,13 @@
                             @csrf
                             <h6 class="heading-small text-muted mb-4">{{ __('Question information') }}</h6>
                             <div class="pl-lg-4">
-                                <div class="form-group{{ $errors->has('title') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-title">{{ __('title') }}</label>
-                                    <input type="text" name="title" id="input-title" class="form-control form-control-alternative{{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="{{ __('title') }}" value="{{ old('title') }}" required autofocus>
+                                <div class="form-group{{ $errors->has('question') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-question">{{ __('question') }}</label>
+                                    <input type="text" name="question" id="input-question" class="form-control form-control-alternative{{ $errors->has('question') ? ' is-invalid' : '' }}" placeholder="{{ __('question') }}" value="{{ old('question') }}" required autofocus>
 
-                                    @if ($errors->has('title'))
+                                    @if ($errors->has('question'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('title') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-
-                                <div class="form-group{{ $errors->has('option_1') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-option_1">{{ __('option 1') }}</label>
-                                    <input type="text" name="option_1" id="input-option_1" class="form-control form-control-alternative{{ $errors->has('option_1') ? ' is-invalid' : '' }}" placeholder="{{ __('option 1') }}" value="{{ old('option_1') }}" required autofocus>
-
-                                    @if ($errors->has('option_1'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('option_1') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-
-
-                                <div class="form-group{{ $errors->has('option_2') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-option_2">{{ __('option 2') }}</label>
-                                    <input type="text" name="option_2" id="input-option_2" class="form-control form-control-alternative{{ $errors->has('option_2') ? ' is-invalid' : '' }}" placeholder="{{ __('option 2') }}" value="{{ old('option_2') }}" required autofocus>
-
-                                    @if ($errors->has('option_2'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('option_2') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-
-                                <div class="form-group{{ $errors->has('option_3') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-option_3">{{ __('option_3') }}</label>
-                                    <input type="text" name="option_3" id="input-option_3" class="form-control form-control-alternative{{ $errors->has('answers') ? ' is-invalid' : '' }}" placeholder="{{ __('option 3') }}" value="{{ old('option_3') }}" required autofocus>
-
-                                    @if ($errors->has('option_3'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('option_3') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-
-                                <div class="form-group{{ $errors->has('option_4') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-option_4">{{ __('option_4') }}</label>
-                                    <input type="text" name="option_4" id="input-option_4" class="form-control form-control-alternative{{ $errors->has('option_4') ? ' is-invalid' : '' }}" placeholder="{{ __('option 4') }}" value="{{ old('option_4') }}" required autofocus>
-
-                                    @if ($errors->has('option_4'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('option_4') }}</strong>
+                                            <strong>{{ $errors->first('question') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -88,6 +40,41 @@
                                         </span>
                                     @endif
                                 </div>
+
+                                <div class="form-group{{ $errors->has('option_1') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-option_1">{{ __('option 1') }}</label>
+                                    <input type="text" name="option_1" id="input-option_1" class="form-control form-control-alternative{{ $errors->has('option_1') ? ' is-invalid' : '' }}" placeholder="{{ __('option 1') }}" value="{{ old('option_1') }}" required autofocus>
+
+                                @if ($errors->has('option_1'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('option_1') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+
+                                <div class="form-group{{ $errors->has('option_2') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-option_2">{{ __('option 2') }}</label>
+                                    <input type="text" name="option_2" id="input-option_2" class="form-control form-control-alternative{{ $errors->has('option_2') ? ' is-invalid' : '' }}" placeholder="{{ __('option 2') }}" value="{{ old('option_2') }}" required autofocus>
+
+                                @if ($errors->has('option_2'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('option_2') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+                                <div class="form-group{{ $errors->has('option_3') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-option_3">{{ __('option_3') }}</label>
+                                    <input type="text" name="option_3" id="input-option_3" class="form-control form-control-alternative{{ $errors->has('answers') ? ' is-invalid' : '' }}" placeholder="{{ __('option 3') }}" value="{{ old('option_3') }}" required autofocus>
+
+                                @if ($errors->has('option_3'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('option_3') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
 
 
                                 <div class="form-group{{ $errors->has('score') ? ' has-danger' : '' }}">

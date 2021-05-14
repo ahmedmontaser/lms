@@ -12,9 +12,6 @@
                             <div class="col-8">
                                 <h3 class="mb-0">{{ __('Quiz Management') }}</h3>
                             </div>
-                            <div class="col-4 text-right">
-                                <a href="{{ route('videos.index') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
-                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -32,18 +29,18 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('course_id') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-track_id">{{ __('Course') }}</label>
+                                <div class="form-group{{ $errors->has('subject_id') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-track_id">{{ __('Subject') }}</label>
                                     
-                                    <select name="course_id" required class="form-control">
-                                        @foreach(\App\Course::orderBy('id','desc')->get() as $course)
-                                        <option value="{{ $course->id }}">{{ \Str::limit($course->title, 10) }}</option>
+                                    <select name="subject_id" required class="form-control">
+                                        @foreach(\App\Models\Subject::orderBy('id','desc')->get() as $subject)
+                                        <option value="{{ $subject->id }}">{{ $subject->title }}</option>
                                         @endforeach
                                     </select>
 
-                                    @if ($errors->has('course_id'))
+                                    @if ($errors->has('subject_id'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('course_id') }}</strong>
+                                            <strong>{{ $errors->first('subject_id') }}</strong>
                                         </span>
                                     @endif
                                 </div>

@@ -1,75 +1,60 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 
-// User Routes
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 
-Route::get('/', 'HomeController@index');
-
-Auth::routes();
+require __DIR__ . '/auth.php';
 
 Route::get('/home', 'HomeController@index')->name('homeuser');
-
-Route::get('/courses/{slug}', 'CourseController@index')->name('course');
-
-Route::post('/courses/{slug}', 'CourseController@enroll')->name('courseenroll');
-
-Route::get('/courses/{slug}/quizzes/{name}', 'QuizController@index')->name('quiz');
-
-Route::post('/courses/{slug}/quizzes/{name}', 'QuizController@submit')->name('quizpost');
-
+Route::get('/', 'HomeController@index');
+Auth::routes();
+Route::get('/subjects/{slug}', 'SubjectController@index')->name('subject');
+Route::post('/subjects/{slug}', 'SubjectController@enroll')->name('subjectenroll');
+Route::get('/subjects/{slug}/quizzes/{name}', 'QuizController@index')->name('quiz');
+Route::post('/subjects/{slug}/quizzes/{name}', 'QuizController@submit')->name('quizpost');
 Route::get('/search', 'SearchController@index')->name('search');
-
-Route::get('/tracks/{name}', 'TrackController@index')->name('track');
-
-Route::get('/mycourses', 'MyCoursesController@index')->name('mycourses');
-
+Route::get('/mysubjects', 'MySubjectsController@index')->name('mysubjects');
 Route::get('/profile', 'ProfileController@index')->name('profile');
-
 Route::post('/profile', 'ProfileController@update')->name('profilepost');
+Route::get('/allsubjects', 'AllSubjectsController@index')->name('allsubjects');
 
-Route::get('/allcourses', 'AllCoursesController@index')->name('allcourses');
-
-Route::post('/mycourses/{course}', 'MyCoursesController@favourite')->name('favourite');
-
-Route::get('/contact', 'ContactController@index')->name('contactget');
-
-Route::post('/contact', 'ContactController@send')->name('contactpost');
-
-
-Route::get('/logout',function(){
-
-	if(\Auth::check())
-	{
-		\Auth::logout();
+Route::get('/logout', function () {
+	if ( Auth::check() ) {
+		Auth::logout();
 		return redirect('/home');
-	}
-	else
-	{
+	} else {
 		return redirect('/');
 	}
 })->name('logout');
 
 // Admin Routes
-
-Route::group(['middleware' => ['auth', 'admin'] ], function () {
-
-	Route::get('admin', function() {
+Route::group(['middleware' => ['auth', "admin"]], function () {
+	Route::get('admin', function () {
 		return redirect('admin/dashboard');
 	});
 
 	Route::get('/admin/dashboard', 'Admin\HomeController@index')->name('home');
 	Route::resource('/admin/admins', 'Admin\AdminController', ['except' => ['show']]);
 	Route::resource('/admin/users', 'Admin\UserController', ['except' => ['show']]);
-	Route::resource('/admin/tracks', 'Admin\TrackController');
-	Route::resource('/admin/courses', 'Admin\CourseController');
-	Route::resource('/admin/videos', 'Admin\VideoController');
+	Route::resource('/admin/subjects', 'Admin\SubjectController');
 	Route::resource('/admin/questions', 'Admin\QuestionController');
-	Route::resource('/admin/courses.quizzes', 'Admin\CourseQuizController');
-	Route::resource('/admin/courses.videos', 'Admin\CourseVideoController');
-	Route::resource('/admin/tracks.courses', 'Admin\TrackCourseController');
+	Route::resource('/admin/subjects.quizzes', 'Admin\SubjectQuizController');
 	Route::resource('admin/quizzes.questions', 'Admin\QuizQuestionController');
 	Route::resource('/admin/quizzes', 'Admin\QuizController');
 	Route::get('admin/profile', ['as' => 'profile.edit', 'uses' => 'Admin\ProfileController@edit']);
 	Route::put('admin/profile', ['as' => 'profile.update', 'uses' => 'Admin\ProfileController@update']);
 	Route::put('admin/profile/password', ['as' => 'profile.password', 'uses' => 'Admin\ProfileController@password']);
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

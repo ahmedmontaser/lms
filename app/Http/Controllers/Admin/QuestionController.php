@@ -2,140 +2,74 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
-use App\Question;
+use App\Models\Quiz;
+use Illuminate\Http\Request;
+use App\Models\Question;
 
 class QuestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
 
-        $questions = Question::orderBy('id', 'desc')->paginate(10);
-        return view('admin.questions.index', compact('questions'));
-    }
+	public function index() {
+		$questions = Question::orderBy('id', 'desc')->paginate(10);
+		return view('admin.questions.index', compact('questions'));
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+	public function create() {
+		$quizzes = Quiz::orderBy('id','desc')->get();
+		return view('admin.questions.create', compact("quizzes"));
+	}
 
-        return view('admin.questions.create');
-    }
+	public function store( Request $request ) {
+		$rules = [
+			'question' => 'required|min:5',
+			'right_answer' => 'required|max:100',
+			'option_1' => 'required|max:100',
+			'option_2' => 'required|max:100',
+			'option_3' => 'required|max:100',
+			'score' => 'required',
+			'quiz_id' => 'required|integer'
+		];
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+		$this->validate($request, $rules);
 
-        $rules = [
-            'title' => 'required|min:5',
-            'option_1' => 'required|min:5|max:100',
-            'option_2' => 'required|min:5|max:100',
-            'option_3' => 'required|min:5|max:100',
-            'option_4' => 'required|min:5|max:100',
-            'right_answer' => 'required|min:5|max:100',
-            'score' => 'required|in:5,10,15,20,25,30',
-            'quiz_id' => 'required|integer'
-        ];
+		$question = Question::create($request->all());
 
-        $this->validate($request,$rules);
+		if ( $question ) {
+			return redirect('/admin/questions');
+		} else {
+			return redirect('admin/questions/create');
+		}
+	}
 
-        $question = Question::create($request->all());
+	public function edit( Question $question ) {
+		$quizzes = Quiz::orderBy('id','desc')->get();
+		return view('admin.questions.edit', compact('question', "quizzes"));
+	}
 
-        if($question)
-        {
-            return redirect('/admin/questions')->withStatus('question successfully created.');
-        }
-        else
-        {
-            return redirect('admin/questions/create')->withStatus('something wrong happened,try again');
-        }
-    }
+	public function update( Request $request, Question $question ) {
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+		$rules = [
+			'question' => 'required|min:5',
+			'right_answer' => 'required|max:100',
+			'option_1' => 'required|max:100',
+			'option_2' => 'required|max:100',
+			'option_3' => 'required|max:100',
+			'score' => 'required',
+			'quiz_id' => 'required|integer'
+		];
 
-    }
+		$this->validate($request, $rules);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Question $question)
-    {
-        //
+		if ( $question->update($request->all()) ) {
+			return redirect('/admin/questions');
+		} else {
+			return redirect('/admin/questions/' . $question->id . '/edit');
+		}
+	}
 
-        return view('admin.questions.edit', compact('question'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Question $question)
-    {
-        //
-
-        $rules = [
-            'title' => 'required|min:5',
-            'option_1' => 'required|min:5|max:100',
-            'option_2' => 'required|min:5|max:100',
-            'option_3' => 'required|min:5|max:100',
-            'option_4' => 'required|min:5|max:100',
-            'right_answer' => 'required|min:5|max:100',
-            'score' => 'required|in:5,10,15,20,25,30',
-            'quiz_id' => 'required|integer'
-        ];
-
-        $this->validate($request, $rules);
-
-        if($question->update($request->all())) {
-            return redirect('/admin/questions')->withStatus('question successfully updated.');
-        }else {
-            return redirect('/admin/questions/'.$question->id.'/edit')->withStatus('Something wrong, Try again.');
-        }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Question $question)
-    {
-        //
-
-        $question->delete();
-        return redirect('/admin/questions')->withStatus('question successfully deleted.');
-    }
+	public function destroy( Question $question ) {
+		$question->delete();
+		return redirect('/admin/questions')->withStatus('question successfully deleted.');
+	}
 }

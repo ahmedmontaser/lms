@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+
 use App\Http\Controllers\Controller;
 
-use App\Track;
-use App\Course;
-use App\User;
-use App\Quiz;
+use App\Models\Subject;
+use App\Models\User;
+use App\Models\Quiz;
 
 class HomeController extends Controller
 {
@@ -19,11 +19,10 @@ class HomeController extends Controller
 
     public function index()
     {   
-        $tracks = Track::orderBy('id','desc')->limit(5)->get();
-        $courses = Course::orderBy('id','desc')->limit(5)->get();
+        $subjects = Subject::orderBy('id','desc')->limit(5)->get();
         $users = User::where('admin', 0)->orderBy('id', 'desc')->limit(5)->get();
         $quizzes = Quiz::orderBy('id','desc')->limit(5)->get();
 
-        return view('admin.dashboard', compact('tracks', 'courses', 'users', 'quizzes'));
+        return view('admin.dashboard', compact( 'subjects', 'users', 'quizzes'));
     }
 }

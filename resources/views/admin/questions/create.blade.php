@@ -33,51 +33,6 @@
                                     @endif
                                 </div>
 
-                                <div class="form-group{{ $errors->has('option_1') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-option_1">{{ __('option 1') }}</label>
-                                    <input type="text" name="option_1" id="input-option_1" class="form-control form-control-alternative{{ $errors->has('option_1') ? ' is-invalid' : '' }}" placeholder="{{ __('option 1') }}" value="{{ old('option_1') }}" required autofocus>
-
-                                    @if ($errors->has('option_1'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('option_1') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-
-
-                                <div class="form-group{{ $errors->has('option_2') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-option_2">{{ __('option 2') }}</label>
-                                    <input type="text" name="option_2" id="input-option_2" class="form-control form-control-alternative{{ $errors->has('option_2') ? ' is-invalid' : '' }}" placeholder="{{ __('option 2') }}" value="{{ old('option_2') }}" required autofocus>
-
-                                    @if ($errors->has('option_2'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('option_2') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-
-                                <div class="form-group{{ $errors->has('option_3') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-option_3">{{ __('option_3') }}</label>
-                                    <input type="text" name="option_3" id="input-option_3" class="form-control form-control-alternative{{ $errors->has('answers') ? ' is-invalid' : '' }}" placeholder="{{ __('option 3') }}" value="{{ old('option_3') }}" required autofocus>
-
-                                    @if ($errors->has('option_3'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('option_3') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-
-                                <div class="form-group{{ $errors->has('option_4') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-option_4">{{ __('option_4') }}</label>
-                                    <input type="text" name="option_4" id="input-option_4" class="form-control form-control-alternative{{ $errors->has('option_4') ? ' is-invalid' : '' }}" placeholder="{{ __('option 4') }}" value="{{ old('option_4') }}" required autofocus>
-
-                                    @if ($errors->has('option_4'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('option_4') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-
                                 <div class="form-group{{ $errors->has('right_answer') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-right_answer">{{ __('right_answers') }}</label>
                                     <input type="text" name="right_answer" id="input-right_answer" class="form-control form-control-alternative{{ $errors->has('right_answer') ? ' is-invalid' : '' }}" placeholder="{{ __('right_answer') }}" value="{{ old('right_answer') }}" required autofocus>
@@ -89,6 +44,38 @@
                                     @endif
                                 </div>
 
+                                <div class="form-group{{ $errors->has('option_1') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-option_1">{{ __('option 1') }}</label>
+                                    <input type="text" name="option_1" id="input-option_1" class="form-control form-control-alternative{{ $errors->has('option_1') ? ' is-invalid' : '' }}" placeholder="{{ __('option 1') }}" value="{{ old('option_1') }}" required autofocus>
+
+                                @if ($errors->has('option_1'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('option_1') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+                                <div class="form-group{{ $errors->has('option_2') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-option_2">{{ __('option 2') }}</label>
+                                    <input type="text" name="option_2" id="input-option_2" class="form-control form-control-alternative{{ $errors->has('option_2') ? ' is-invalid' : '' }}" placeholder="{{ __('option 2') }}" value="{{ old('option_2') }}" required autofocus>
+
+                                @if ($errors->has('option_2'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('option_2') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+                                <div class="form-group{{ $errors->has('option_3') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-option_3">{{ __('option_3') }}</label>
+                                    <input type="text" name="option_3" id="input-option_3" class="form-control form-control-alternative{{ $errors->has('answers') ? ' is-invalid' : '' }}" placeholder="{{ __('option 3') }}" value="{{ old('option_3') }}" required autofocus>
+
+                                @if ($errors->has('option_3'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('option_3') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
 
                                 <div class="form-group{{ $errors->has('score') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-score">{{ __('score') }}</label>
@@ -114,8 +101,8 @@
                                     <label class="form-control-label" for="input-track_id">{{ __('Quiz') }}</label>
                                     
                                     <select name="quiz_id" required class="form-control">
-                                        @foreach(\App\Quiz::orderBy('id','desc')->get() as $quiz)
-                                        <option value="{{ $quiz->id }}">{{ \Str::limit($quiz->name, 10) }}</option>
+                                        @foreach($quizzes as $quiz)
+                                            <option value="{{ $quiz->id }}">{{ $quiz->name }}</option>
                                         @endforeach
                                     </select>
 

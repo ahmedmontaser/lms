@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 
 class Owner
 {
@@ -13,12 +14,12 @@ class Owner
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
-        $user = auth()->user();
-        if($user->admin == 2){
-            return $next($request);
-        }
-        return abort(404);
+		$user = auth()->user();
+		if($user->admin == 2){
+			return $next($request);
+		}
+		return abort(404);
     }
 }

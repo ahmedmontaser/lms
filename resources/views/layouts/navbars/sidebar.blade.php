@@ -120,22 +120,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('tracks.index') }}">
-                        <i class="far fa-chart-bar text-blue"></i> {{ __('Tracks') }}
+                    <a class="nav-link" href="{{ route('subjects.index') }}">
+                        <i class="fas fa-chalkboard-teacher text-blue"></i> {{ __('Subjects') }}
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('courses.index') }}">
-                        <i class="fas fa-chalkboard-teacher text-blue"></i> {{ __('Courses') }}
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('videos.index') }}">
-                        <i class="fab fa-youtube text-blue"></i> {{ __('Videos') }}
-                    </a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('quizzes.index') }}">
                         <i class="far fa-edit text-blue"></i> {{ __('Quizzes') }}

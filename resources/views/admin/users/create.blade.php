@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('users.store') }}" autocomplete="off">
+                        <form method="post" action="{{ route('users.store') }}">
                             @csrf
                             <input type="hidden" name="admin" value="0">
                             <h6 class="heading-small text-muted mb-4">{{ __('User information') }}</h6>

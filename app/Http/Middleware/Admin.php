@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 
 class Admin
 {
@@ -13,14 +14,14 @@ class Admin
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {   
-        $user = auth()->user();
+    public function handle(Request $request, Closure $next)
+    {
+		$user = auth()->user();
 
-        if($user->admin == 1 || $user->admin == 2) {
-            return $next($request);
-        }else {
-            return abort(404);
-        }
+		if($user->admin == 1 || $user->admin == 2) {
+			return $next($request);
+		}else {
+			return redirect('mysubjects');
+		}
     }
 }

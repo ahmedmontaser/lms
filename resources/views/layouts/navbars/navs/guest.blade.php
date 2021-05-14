@@ -1,6 +1,6 @@
 <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
     <div class="container px-4">
-    <a class="navbar-brand" href="{{ route('homeuser') }}"><span style="background-color: #fff;color: #1c5996;padding: 8px;border-radius: 10px 20px;" class="logo">LC</span> Learncode</a>
+    <a class="navbar-brand" href="#"><span style="background-color: #fff;color: #1c5996;padding: 8px;border-radius: 10px 20px;" class="logo">LC</span> Learncode</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
